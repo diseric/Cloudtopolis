@@ -167,6 +167,7 @@ echo -e "\e[0m"
 echo -e "\e[34;1m[i] Cloudtopolis is running!"
 echo -e "\e[37;1mPress \e[31;1mControl+C \e[37;1mto stop.."
 echo -e "\e[31;1m"
+curl https://loca.lt/mytunnelpassword
 
 sudo chown -R 33:33 Cloudtopolis/inc Cloudtopolis/import Cloudtopolis/files
 trap 'docker rm -f $(docker container ls -q -a) > /dev/null 2>&1 ; echo
