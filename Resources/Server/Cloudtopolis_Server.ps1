@@ -4,11 +4,11 @@ if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]:
 Start-Process powershell -ArgumentList "cd $localpath ; $PSCommandPath $args" -Verb RunAs ; exit }
 
 # Design
-$Host.UI.RawUI.WindowTitle = "Cloudtopolis v3.0 [Server] - by @JoelGMSec" ; $Host.UI.RawUI.BackgroundColor = 'Black'
-Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/JoelGMSec/Cloudtopolis/master/Resources/Design/Disable-Close.ps1')
-Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/JoelGMSec/Cloudtopolis/master/Resources/Design/CloudtopoliStyle.ps1')
-(New-object System.net.webclient).DownloadFile("https://raw.githubusercontent.com/JoelGMSec/Cloudtopolis/master/Resources/Design/Set-ConsoleIcon.ps1","Set-ConsoleIcon.ps1")
-(New-object System.net.webclient).DownloadFile("https://raw.githubusercontent.com/JoelGMSec/Cloudtopolis/master/Resources/Design/Cloudtopolis.ico","Cloudtopolis.ico")
+$Host.UI.RawUI.WindowTitle = "Cloudtopolis v3.0 [Server] - by @diseric" ; $Host.UI.RawUI.BackgroundColor = 'Black'
+Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/diseric/Cloudtopolis/master/Resources/Design/Disable-Close.ps1')
+Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/diseric/Cloudtopolis/master/Resources/Design/CloudtopoliStyle.ps1')
+(New-object System.net.webclient).DownloadFile("https://raw.githubusercontent.com/diseric/Cloudtopolis/master/Resources/Design/Set-ConsoleIcon.ps1","Set-ConsoleIcon.ps1")
+(New-object System.net.webclient).DownloadFile("https://raw.githubusercontent.com/diseric/Cloudtopolis/master/Resources/Design/Cloudtopolis.ico","Cloudtopolis.ico")
 .\Set-ConsoleIcon.ps1 $localpath\Cloudtopolis.ico ; del Set-ConsoleIcon.ps1,Cloudtopolis.ico 
 
 # Banner
@@ -22,10 +22,10 @@ function Show-Banner { Clear-Host ; $Host.UI.RawUI.ForegroundColor = 'Blue'
     Write-Host "                                    |_|                    "
     Write-Host
     Write-Host ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" -ForegroundColor White
-    Write-Host ":: " -ForegroundColor White -NoNewLine ; Write-Host "Created by @JoelGMSec " -ForegroundColor Blue -NoNewLine
+    Write-Host ":: " -ForegroundColor White -NoNewLine ; Write-Host "Created by @diseric " -ForegroundColor Blue -NoNewLine
     Write-Host ":: " -ForegroundColor White -NoNewLine ; Write-Host "https://darkbyte.net " -ForegroundColor Blue -NoNewLine
     Write-Host ":: " -ForegroundColor White -NoNewLine ; Write-Host "v3.0 " -ForegroundColor Blue -NoNewLine ; Write-Host "::" -ForegroundColor White
-    Write-Host ":: " -ForegroundColor White -NoNewLine ; Write-Host "https://github.com/JoelGMSec/Cloudtopolis " -ForegroundColor Blue -NoNewLine
+    Write-Host ":: " -ForegroundColor White -NoNewLine ; Write-Host "https://github.com/diseric/Cloudtopolis " -ForegroundColor Blue -NoNewLine
     Write-Host ":: " -ForegroundColor White -NoNewLine ; Write-Host "[Server]" -ForegroundColor Red -NoNewLine ; Write-Host " ::" -ForegroundColor White
     Write-Host ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::" -ForegroundColor White
     Write-Host  ; $Host.UI.RawUI.ForegroundColor = 'White'
@@ -80,7 +80,7 @@ function Run-Server {
     $Global:Check3 = & $GCloudbin config get-value account 2> $null ; sleep 1
     if($Check3 -ne $null){ Write-Host "[i] Cloudtopolis is ready to run!" -ForegroundColor Blue ; sleep 1
     $gcloudssh = (& $GCloudbin cloud-shell ssh --dry-run).split('') | Select-String '@' 2> $null
-    $command = '"curl -sk https://raw.githubusercontent.com/JoelGMSec/Cloudtopolis/master/Cloudtopolis.sh | bash"' ; Repair-Permissions 2>&1> $null
+    $command = '"curl -sk https://raw.githubusercontent.com/diseric/Cloudtopolis/master/Cloudtopolis.sh | bash"' ; Repair-Permissions 2>&1> $null
     ssh -p 6000 -i "$home\.ssh\google_compute_engine" -o "TCPKeepAlive=yes" -o "StrictHostKeyChecking=no" -C -L 8000:localhost:8000 -4 $gcloudssh -t $command }
     else { Write-Host "[!] Exiting.." -ForegroundColor Red ; sleep 2 ; exit }}
 
